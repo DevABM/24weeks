@@ -1,0 +1,23 @@
+{
+  "Version": "2012-10-17",
+  "Id": "ItemProcessingQueue-ID",
+  "Statement": [
+    {
+      "Sid": "ItemProcessingQueue-statement-ID",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": "SQS:SendMessage",
+      "Resource": "arn:aws:sqs:us-east-1:596492608068:ItemProcessingQueue",
+      "Condition": {
+        "StringEquals": {
+          "aws:SourceAccount": "596492608068"
+        },
+        "ArnLike": {
+          "aws:SourceArn": "arn:aws:s3:*:*:item-processing-bucket-s3project-01"
+        }
+      }
+    }
+  ]
+}
