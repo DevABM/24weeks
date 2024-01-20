@@ -1,0 +1,18 @@
+{
+	"Version": "2012-10-17",
+	"Id": "Policy1705719988162",
+	"Statement": [
+		{
+			"Sid": "Stmt1705719984043",
+			"Effect": "Allow",
+			"Principal": "*",
+			"Action": "s3:GetObject",
+			"Resource": "arn:aws:s3:::luiy-gold-2024-bucket01/*",
+			"Condition": {
+				"StringEquals": {
+					"s3:ExistingObjectTag/public": "yes"
+				}
+			}
+		}
+	]
+}
