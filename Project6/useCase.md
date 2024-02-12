@@ -1,4 +1,4 @@
-Foundational
+### Foundational
 
 As the root user:
 
@@ -24,7 +24,7 @@ Joey Ewart, username= jewart, email=jewart@levelupbank.com, group= Data Analysts
 
 Switch to each newly created user and verify they are only able to access the directories associated with their Group and that they are able to view and open the files in the directory.
 
-Advanced
+### Advanced
 
 Set permissions so that users can only access their own profile.
 
@@ -32,6 +32,6 @@ Verify that each user can only access their own profile.
 
 Note: If you switch to one of the users, that user should be able to access their own home directory /home/[username], but not be able to access or cd into another user’s home directory.
 
-Complex
+### Complex
 
 Create and successfully run a bash script that does everything from the Foundational and Advanced tiers of the project.
