@@ -221,9 +221,6 @@ ls -l
 cd /path/to/Analytics
 ls -l
 
-#list all users
-sudo 
-sudo useradd -m -s /bin/bash -G Developers jwaller
 
 
 
