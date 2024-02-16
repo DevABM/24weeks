@@ -1,4 +1,4 @@
-### Foundational
+### Foundational project
 
 As the root user:
 
