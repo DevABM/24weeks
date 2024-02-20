@@ -1,0 +1,1104 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2759
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red242\green242\blue242;\red0\green0\blue0;\red47\green180\blue29;
+\red64\green11\blue217;\red0\green0\blue163;\red20\green153\blue2;\red46\green174\blue187;\red0\green0\blue0;
+}
+{\*\expandedcolortbl;;\csgray\c95825;\csgray\c0\c85000;\cssrgb\c20241\c73898\c14950;
+\cssrgb\c32309\c18666\c88229;\cssrgb\c0\c0\c70000;\cssrgb\c0\c65000\c0;\cssrgb\c20199\c73241\c78251;\csgray\c0;
+}
+\margl1440\margr1440\vieww22320\viewh14140\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 \CocoaLigature0 Last login: Mon Feb 19 11:56:47 on ttys004\
+ABM@Amudhas-MBP ~ % ssh -i "LUIT.pem" ubuntu@ec2-44-220-144-19.compute-1.amazonaws.com\
+Warning: Identity file LUIT.pem not accessible: No such file or directory.\
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-1053-aws x86_64)\
+\
+ * Documentation:  https://help.ubuntu.com\
+ * Management:     https://landscape.canonical.com\
+ * Support:        https://ubuntu.com/advantage\
+\
+  System information as of Mon Feb 19 16:57:23 UTC 2024\
+\
+  System load:  0.0               Processes:             98\
+  Usage of /:   37.8% of 7.57GB   Users logged in:       0\
+  Memory usage: 31%               IPv4 address for eth0: 172.31.31.90\
+  Swap usage:   0%\
+\
+ * Ubuntu Pro delivers the most comprehensive open source security and\
+   compliance features.\
+\
+   https://ubuntu.com/aws/pro\
+\
+Expanded Security Maintenance for Applications is not enabled.\
+\
+29 updates can be applied immediately.\
+2 of these updates are standard security updates.\
+To see these additional updates run: apt list --upgradable\
+\
+Enable ESM Apps to receive additional future security updates.\
+See https://ubuntu.com/esm or run: sudo pro status\
+\
+\
+Last login: Mon Feb 19 05:03:37 2024 from 69.117.108.146\
+\cf4 ubuntu@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ sudo su\
+root@ip-172-31-31-90:/home/ubuntu# ls -l\
+total 4\
+drwxrwxr-x 6 ubuntu ubuntu 4096 Feb  5 16:43 \cf5 linux-course\cf2 \
+root@ip-172-31-31-90:/home/ubuntu# ls -l\
+total 4\
+drwxrwxr-x 6 ubuntu ubuntu 4096 Feb  5 16:43 \cf5 linux-course\cf2 \
+root@ip-172-31-31-90:/home/ubuntu# pwd\
+/home/ubuntu\
+root@ip-172-31-31-90:/home/ubuntu# sudo -i\
+root@ip-172-31-31-90:~# ls -l\
+total 16\
+drwxr-x--- 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+drwxr-x--- 2 jwaller Developers 4096 Feb 19 00:55 \cf5 Development\cf2 \
+drwxr-x--- 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwx------ 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+root@ip-172-31-31-90:~# sudo su jwaller\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo -i\
+[sudo] password for jwaller: \
+root@ip-172-31-31-90:~# sudo su jwaller\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ pwd\
+/root\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /home\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /home\cf2 $ pwd\
+/home\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /home\cf2 $ ls -l\
+total 32\
+drwxr-xr-x 2 bdorsey  bdorsey  4096 Feb 13 03:43 \cf5 bdorsey\cf2 \
+drwxr-xr-x 2 jewart   jewart   4096 Feb 13 03:45 \cf5 jewart\cf2 \
+drwxr-xr-x 2 jwaller  jwaller  4096 Feb 18 05:25 \cf5 jwaller\cf2 \
+drwxr-xr-x 2 ssm-user ssm-user 4096 Feb 13 03:30 \cf5 ssm-user\cf2 \
+drwxr-xr-x 6 ubuntu   ubuntu   4096 Feb  6 02:25 \cf5 ubuntu\cf2 \
+drwxr-xr-x 2     1005     1012 4096 Feb 19 04:07 \cf5 user1\cf2 \
+drwxr-xr-x 2     1006     1013 4096 Feb 19 04:07 \cf5 user2\cf2 \
+drwxr-xr-x 2     1007     1014 4096 Feb 19 04:29 \cf5 user4\cf2 \
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /home\cf2 $ cd -\
+bash: cd: /root: Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /home\cf2 $ cd ~/Department\
+bash: cd: /home/jwaller/Department: No such file or directory\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /home\cf2 $ cd /root/Department\
+bash: cd: /root/Department: Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /home\cf2 $ sudo cd /root/Department\
+sudo: cd: command not found\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /home\cf2 $ cd root\
+bash: cd: root: No such file or directory\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /home\cf2 $ cd /root\
+bash: cd: /root: Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /home\cf2 $ sudo su jwaller\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /home\cf2 $ exit\
+exit\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /home\cf2 $ exit\
+exit\
+root@ip-172-31-31-90:~# sudo su jwaller\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ ls -l\
+ls: cannot open directory '.': Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo ls -l\
+total 16\
+drwxr-x--- 2 jewart  Analysts   4096 Feb 19 00:55 Analytics\
+drwxr-x--- 2 jwaller Developers 4096 Feb 19 00:55 Development\
+drwxr-x--- 2 bdorsey Operators  4096 Feb 19 00:55 Operations\
+drwx------ 4 root    root       4096 Feb  5 16:24 snap\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo ls -l /Development\
+ls: cannot access '/Development': No such file or directory\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo ls -l /root/Development\
+total 0\
+-rw-r--r-- 1 root root 0 Feb 19 00:54 file1.txt\
+-rw-r--r-- 1 root root 0 Feb 19 00:54 file2.txt\
+-rw-r--r-- 1 root root 0 Feb 19 00:55 file3.txt\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ whoami\
+jwaller\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /home\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /home\cf2 $ ls -l\
+total 32\
+drwxr-xr-x 2 bdorsey  bdorsey  4096 Feb 13 03:43 \cf5 bdorsey\cf2 \
+drwxr-xr-x 2 jewart   jewart   4096 Feb 13 03:45 \cf5 jewart\cf2 \
+drwxr-xr-x 2 jwaller  jwaller  4096 Feb 18 05:25 \cf5 jwaller\cf2 \
+drwxr-xr-x 2 ssm-user ssm-user 4096 Feb 13 03:30 \cf5 ssm-user\cf2 \
+drwxr-xr-x 6 ubuntu   ubuntu   4096 Feb  6 02:25 \cf5 ubuntu\cf2 \
+drwxr-xr-x 2     1005     1012 4096 Feb 19 04:07 \cf5 user1\cf2 \
+drwxr-xr-x 2     1006     1013 4096 Feb 19 04:07 \cf5 user2\cf2 \
+drwxr-xr-x 2     1007     1014 4096 Feb 19 04:29 \cf5 user4\cf2 \
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /home\cf2 $ ls -l /root/Development\
+ls: cannot access '/root/Development': Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /home\cf2 $ cd jwaller\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ ls -l\
+total 0\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ sudo chmod 700 /root/Development\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ cd /root/Devlopment\
+bash: cd: /root/Devlopment: Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ ls -ltr\
+total 0\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ id\
+uid=1002(jwaller) gid=1005(jwaller) groups=1005(jwaller),4(adm),27(sudo),33(www-data),1002(Developers)\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ pwd\
+/home/jwaller\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ cd /root\
+bash: cd: /root: Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ sudo \
+usage: sudo -h | -K | -k | -V\
+usage: sudo -v [-AknS] [-g group] [-h host] [-p prompt] [-u user]\
+usage: sudo -l [-AknS] [-g group] [-h host] [-p prompt] [-U user] [-u user] [command]\
+usage: sudo [-AbEHknPS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] [VAR=value] [-i|-s] [<command>]\
+usage: sudo -e [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ sudo ls /\
+bin  boot  dev	etc  home  lib	lib32  lib64  libx32  lost+found  media  mnt  opt  proc  root  run  sbin  snap	srv  sys  tmp  usr  var\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ sudo ls -ltr\
+total 0\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ sudo  /ls -ltr\
+sudo: /ls: command not found\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ sudo  / ls -ltr\
+sudo: /: command not found\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ sudo /root\
+sudo: /root: command not found\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ sudo bash \
+root@ip-172-31-31-90:/home/jwaller# \
+root@ip-172-31-31-90:/home/jwaller# \
+root@ip-172-31-31-90:/home/jwaller# \
+root@ip-172-31-31-90:/home/jwaller# ls-ltr\
+ls-ltr: command not found\
+root@ip-172-31-31-90:/home/jwaller# ls -ltr \
+total 0\
+root@ip-172-31-31-90:/home/jwaller# \
+root@ip-172-31-31-90:/home/jwaller# \
+root@ip-172-31-31-90:/home/jwaller# suod /root\
+\
+Command 'suod' not found, did you mean:\
+\
+  command 'sudo' from deb sudo (1.8.31-1ubuntu1.5)\
+  command 'sudo' from deb sudo-ldap (1.8.31-1ubuntu1.5)\
+\
+Try: apt install <deb name>\
+\
+root@ip-172-31-31-90:/home/jwaller# sudo\
+sudo        sudoedit    sudoreplay  \
+root@ip-172-31-31-90:/home/jwaller# sudo /root\
+sudo: /root: command not found\
+root@ip-172-31-31-90:/home/jwaller# sudo /\
+sudo: /: command not found\
+root@ip-172-31-31-90:/home/jwaller# \
+root@ip-172-31-31-90:/home/jwaller# \
+root@ip-172-31-31-90:/home/jwaller# \
+root@ip-172-31-31-90:/home/jwaller# sudo /\
+sudo: /: command not found\
+root@ip-172-31-31-90:/home/jwaller# \
+root@ip-172-31-31-90:/home/jwaller# \
+root@ip-172-31-31-90:/home/jwaller# sudo \
+usage: sudo -h | -K | -k | -V\
+usage: sudo -v [-AknS] [-g group] [-h host] [-p prompt] [-u user]\
+usage: sudo -l [-AknS] [-g group] [-h host] [-p prompt] [-U user] [-u user] [command]\
+usage: sudo [-AbEHknPS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] [VAR=value] [-i|-s] [<command>]\
+usage: sudo -e [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...\
+root@ip-172-31-31-90:/home/jwaller# pwd\
+/home/jwaller\
+root@ip-172-31-31-90:/home/jwaller# cd /home\
+root@ip-172-31-31-90:/home# ls -ltr\
+total 32\
+drwxr-xr-x 6 ubuntu   ubuntu   4096 Feb  6 02:25 \cf5 ubuntu\cf2 \
+drwxr-xr-x 2 ssm-user ssm-user 4096 Feb 13 03:30 \cf5 ssm-user\cf2 \
+drwxr-xr-x 2 bdorsey  bdorsey  4096 Feb 13 03:43 \cf5 bdorsey\cf2 \
+drwxr-xr-x 2 jewart   jewart   4096 Feb 13 03:45 \cf5 jewart\cf2 \
+drwxr-xr-x 2 jwaller  jwaller  4096 Feb 18 05:25 \cf5 jwaller\cf2 \
+drwxr-xr-x 2     1005     1012 4096 Feb 19 04:07 \cf5 user1\cf2 \
+drwxr-xr-x 2     1006     1013 4096 Feb 19 04:07 \cf5 user2\cf2 \
+drwxr-xr-x 2     1007     1014 4096 Feb 19 04:29 \cf5 user4\cf2 \
+root@ip-172-31-31-90:/home# id\
+uid=0(root) gid=0(root) groups=0(root)\
+root@ip-172-31-31-90:/home# \
+root@ip-172-31-31-90:/home# cd /root/\
+root@ip-172-31-31-90:~# ls\
+\cf5 Analytics\cf2   \cf5 Development\cf2   \cf5 Operations\cf2   \cf5 snap\cf2 \
+root@ip-172-31-31-90:~# ls -ltr\
+total 16\
+drwx------ 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+drwx------ 2 jwaller Developers 4096 Feb 19 00:55 \cf5 Development\cf2 \
+drwxr-x--- 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwxr-x--- 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+root@ip-172-31-31-90:~# cd Development/\
+root@ip-172-31-31-90:~/Development# ls -lr\
+total 0\
+-rw-r--r-- 1 root root 0 Feb 19 00:55 file3.txt\
+-rw-r--r-- 1 root root 0 Feb 19 00:54 file2.txt\
+-rw-r--r-- 1 root root 0 Feb 19 00:54 file1.txt\
+root@ip-172-31-31-90:~/Development# cd ..\
+root@ip-172-31-31-90:~# pwd\
+/root\
+root@ip-172-31-31-90:~# chown -R jwaller:Developers /root/Development/\
+root@ip-172-31-31-90:~# chown -R bdorsey:Operators /root/Operations\
+root@ip-172-31-31-90:~# chown -R jewart:Analysts /root/Analytics\
+root@ip-172-31-31-90:~# exit\
+exit\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ id\
+uid=1002(jwaller) gid=1005(jwaller) groups=1005(jwaller),4(adm),27(sudo),33(www-data),1002(Developers)\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ cd /root/Development\
+bash: cd: /root/Development: Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ sudo \
+usage: sudo -h | -K | -k | -V\
+usage: sudo -v [-AknS] [-g group] [-h host] [-p prompt] [-u user]\
+usage: sudo -l [-AknS] [-g group] [-h host] [-p prompt] [-U user] [-u user] [command]\
+usage: sudo [-AbEHknPS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] [VAR=value] [-i|-s] [<command>]\
+usage: sudo -e [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ sudo -i \
+root@ip-172-31-31-90:~# ls -tr\
+\cf5 snap\cf2   \cf5 Development\cf2   \cf5 Operations\cf2   \cf5 Analytics\cf2 \
+root@ip-172-31-31-90:~# ls -ltr\
+total 16\
+drwx------ 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+drwx------ 2 jwaller Developers 4096 Feb 19 00:55 \cf5 Development\cf2 \
+drwxr-x--- 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwxr-x--- 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+root@ip-172-31-31-90:~# cd Development/\
+root@ip-172-31-31-90:~/Development# ls\
+file1.txt  file2.txt  file3.txt\
+root@ip-172-31-31-90:~/Development# ls -ltr\
+total 0\
+-rw-r--r-- 1 jwaller Developers 0 Feb 19 00:54 file2.txt\
+-rw-r--r-- 1 jwaller Developers 0 Feb 19 00:54 file1.txt\
+-rw-r--r-- 1 jwaller Developers 0 Feb 19 00:55 file3.txt\
+root@ip-172-31-31-90:~/Development# chmod 744 /root/Development/\
+root@ip-172-31-31-90:~/Development# exit\
+logout\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ id\
+uid=1002(jwaller) gid=1005(jwaller) groups=1005(jwaller),4(adm),27(sudo),33(www-data),1002(Developers)\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ sudo -i \
+root@ip-172-31-31-90:~# ls\
+\cf5 Analytics\cf2   \cf5 Development\cf2   \cf5 Operations\cf2   \cf5 snap\cf2 \
+root@ip-172-31-31-90:~# cd Development/\
+root@ip-172-31-31-90:~/Development# cd ..\
+root@ip-172-31-31-90:~# ls -ltr\
+total 16\
+drwx------ 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 00:55 \cf5 Development\cf2 \
+drwxr-x--- 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwxr-x--- 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+root@ip-172-31-31-90:~# chmod 766 Development/\
+root@ip-172-31-31-90:~# ls -ltr\
+total 16\
+drwx------ 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+drwxrw-rw- 2 jwaller Developers 4096 Feb 19 00:55 \cf6 \cb7 Development\cf2 \cb3 \
+drwxr-x--- 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwxr-x--- 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+root@ip-172-31-31-90:~# exit\
+logout\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ sudo - \
+sudo: -: command not found\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ sudo -i\
+root@ip-172-31-31-90:~# cd /opt/\
+root@ip-172-31-31-90:/opt# ls -ltr\
+total 0\
+root@ip-172-31-31-90:/opt# mkdir Development\
+root@ip-172-31-31-90:/opt# ls -ltr\
+total 4\
+drwxr-xr-x 2 root root 4096 Feb 19 17:41 \cf5 Development\cf2 \
+root@ip-172-31-31-90:/opt# chown -R jwaller:Developers /opt/Development/\
+root@ip-172-31-31-90:/opt# exit \
+logout\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 ~\cf2 $ cd /opt/Development/\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /opt/Development\cf2 $ sudo /root\
+sudo: /root: command not found\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /opt/Development\cf2 $ sudo -i \
+root@ip-172-31-31-90:~# ls -ltr\
+total 16\
+drwx------ 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+drwxrw-rw- 2 jwaller Developers 4096 Feb 19 00:55 \cf6 \cb7 Development\cf2 \cb3 \
+drwxr-x--- 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwxr-x--- 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+root@ip-172-31-31-90:~# cd ..\
+root@ip-172-31-31-90:/# ls -ltr\
+total 64\
+lrwxrwxrwx   1 root root     8 Oct 25 21:51 \cf8 sbin\cf2  -> \cf5 usr/sbin\cf2 \
+lrwxrwxrwx   1 root root     7 Oct 25 21:51 \cf8 bin\cf2  -> \cf5 usr/bin\cf2 \
+lrwxrwxrwx   1 root root     9 Oct 25 21:51 \cf8 lib64\cf2  -> \cf5 usr/lib64\cf2 \
+lrwxrwxrwx   1 root root     9 Oct 25 21:51 \cf8 lib32\cf2  -> \cf5 usr/lib32\cf2 \
+lrwxrwxrwx   1 root root     7 Oct 25 21:51 \cf8 lib\cf2  -> \cf5 usr/lib\cf2 \
+lrwxrwxrwx   1 root root    10 Oct 25 21:51 \cf8 libx32\cf2  -> \cf5 usr/libx32\cf2 \
+drwxr-xr-x   2 root root  4096 Oct 25 21:51 \cf5 mnt\cf2 \
+drwxr-xr-x   2 root root  4096 Oct 25 21:51 \cf5 srv\cf2 \
+drwxr-xr-x   2 root root  4096 Oct 25 21:51 \cf5 media\cf2 \
+drwxr-xr-x  14 root root  4096 Oct 25 21:52 \cf5 usr\cf2 \
+drwxr-xr-x  13 root root  4096 Oct 25 21:53 \cf5 var\cf2 \
+drwx------   2 root root 16384 Oct 25 21:54 \cf5 lost+found\cf2 \
+drwxr-xr-x   8 root root  4096 Oct 25 21:56 \cf5 snap\cf2 \
+drwxr-xr-x   4 root root  4096 Feb 18 05:40 \cf5 boot\cf2 \
+drwx------   7 root root  4096 Feb 19 04:12 \cf5 root\cf2 \
+drwxr-xr-x  10 root root  4096 Feb 19 04:29 \cf5 home\cf2 \
+dr-xr-xr-x  13 root root     0 Feb 19 05:02 \cf5 sys\cf2 \
+dr-xr-xr-x 173 root root     0 Feb 19 05:02 \cf5 proc\cf2 \
+drwxr-xr-x  17 root root  3260 Feb 19 05:02 \cf5 dev\cf2 \
+drwxr-xr-x  96 root root  4096 Feb 19 05:26 \cf5 etc\cf2 \
+drwxr-xr-x  28 root root   940 Feb 19 16:57 \cf5 run\cf2 \
+drwxrwxrwt  12 root root  4096 Feb 19 16:57 \cf9 \cb7 tmp\cf2 \cb3 \
+drwxr-xr-x   3 root root  4096 Feb 19 17:41 \cf5 opt\cf2 \
+root@ip-172-31-31-90:/# chmod -R 775 /root\
+root@ip-172-31-31-90:/# ls -ltr\
+total 64\
+lrwxrwxrwx   1 root root     8 Oct 25 21:51 \cf8 sbin\cf2  -> \cf5 usr/sbin\cf2 \
+lrwxrwxrwx   1 root root     7 Oct 25 21:51 \cf8 bin\cf2  -> \cf5 usr/bin\cf2 \
+lrwxrwxrwx   1 root root     9 Oct 25 21:51 \cf8 lib64\cf2  -> \cf5 usr/lib64\cf2 \
+lrwxrwxrwx   1 root root     9 Oct 25 21:51 \cf8 lib32\cf2  -> \cf5 usr/lib32\cf2 \
+lrwxrwxrwx   1 root root     7 Oct 25 21:51 \cf8 lib\cf2  -> \cf5 usr/lib\cf2 \
+lrwxrwxrwx   1 root root    10 Oct 25 21:51 \cf8 libx32\cf2  -> \cf5 usr/libx32\cf2 \
+drwxr-xr-x   2 root root  4096 Oct 25 21:51 \cf5 mnt\cf2 \
+drwxr-xr-x   2 root root  4096 Oct 25 21:51 \cf5 srv\cf2 \
+drwxr-xr-x   2 root root  4096 Oct 25 21:51 \cf5 media\cf2 \
+drwxr-xr-x  14 root root  4096 Oct 25 21:52 \cf5 usr\cf2 \
+drwxr-xr-x  13 root root  4096 Oct 25 21:53 \cf5 var\cf2 \
+drwx------   2 root root 16384 Oct 25 21:54 \cf5 lost+found\cf2 \
+drwxr-xr-x   8 root root  4096 Oct 25 21:56 \cf5 snap\cf2 \
+drwxr-xr-x   4 root root  4096 Feb 18 05:40 \cf5 boot\cf2 \
+drwxrwxr-x   7 root root  4096 Feb 19 04:12 \cf5 root\cf2 \
+drwxr-xr-x  10 root root  4096 Feb 19 04:29 \cf5 home\cf2 \
+dr-xr-xr-x  13 root root     0 Feb 19 05:02 \cf5 sys\cf2 \
+dr-xr-xr-x 173 root root     0 Feb 19 05:02 \cf5 proc\cf2 \
+drwxr-xr-x  17 root root  3260 Feb 19 05:02 \cf5 dev\cf2 \
+drwxr-xr-x  96 root root  4096 Feb 19 05:26 \cf5 etc\cf2 \
+drwxr-xr-x  28 root root   940 Feb 19 16:57 \cf5 run\cf2 \
+drwxrwxrwt  12 root root  4096 Feb 19 16:57 \cf9 \cb7 tmp\cf2 \cb3 \
+drwxr-xr-x   3 root root  4096 Feb 19 17:41 \cf5 opt\cf2 \
+root@ip-172-31-31-90:/# exit\
+logout\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /opt/Development\cf2 $ cd /root/Development/\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root/Development\cf2 $ history\
+    1  cd /path/to/Development\
+    2  ls\
+    3  cd ~/Development\
+    4  ls -l\
+    5  cd ..\
+    6  ls\
+    7  cd bdorsey/\
+    8  ls -l\
+    9  cd \\\
+   10  ls -l\
+   11  exit\
+   12  sudo ls -l\
+   13  exit\
+   14  whoami\
+   15  sudo whoami\
+   16  sudo ls -l\
+   17  exit\
+   18  sudo ls -l\
+   19  sudo ls -l /home/jwaller\
+   20  ls -l\
+   21  sudo ls -l\
+   22  exit\
+   23  sdf12345\
+   24  sudo ls -l\
+   25  ls /Development\
+   26  ls /root/Development\
+   27  exit\
+   28  ls /root/Development\
+   29  sudo ls /root/Development\
+   30  sudo ls /root/Operations\
+   31  exit\
+   32  sudo ls /root/Development\
+   33  sudo ls /root/Operations\
+   34  sudo ls /root/Analytics\
+   35  ls -l\
+   36  whoami\
+   37  sudo whoami\
+   38  sudo chmod 750 Analytics\
+   39  sudo chmod 700 Analytics\
+   40  sudo ls -l\
+   41  sudo ls /root/Analytics\
+   42  sudo chmod 660 Developers\
+   43  sudo chmod 660 Development\
+   44  sudo ls -l\
+   45  sudo chmod 660 Operations\
+   46  sudo ls -l\
+   47  sudo ls ./Operations\
+   48  sudo usermod -aG Developers jwaller\
+   49  exit\
+   50  ls\
+   51  ls ./Development\
+   52  sudo ls ./Development\
+   53  sudo ls ./Operstions\
+   54  sudo ls ./Operations\
+   55  exit\
+   56  cd ./Development\
+   57  sudo cd ./Development\
+   58  sudo cd ~/Development\
+   59  sudo cd root//Development\
+   60  sudo cd root/Development\
+   61  sudo cd /root/Development\
+   62  sudo chmod 700 /root/Development\
+   63  cd /root/Development\
+   64  sudo ls -l\
+   65  ls\
+   66  sudo chmod 770 /root/Development\
+   67  cd /root/Development\
+   68  sudo ls -l\
+   69  cd /root/Development\
+   70  cd root/Development\
+   71  exit\
+   72  sudo cd /root/Development\
+   73  which cd\
+   74  which cd /root/Development\
+   75  exit\
+   76  cd /root/Development\
+   77  cd /home/jwaller\
+   78  cd /root/Development\
+   79  cd ~/Development\
+   80  ls -l\
+   81  cd root/Development\
+   82  cd /root/Development\
+   83  sudo chown jwaller Development\
+   84  sudo chown jwaller /root/Development\
+   85  sudo ls -l\
+   86  sudo ls -l Development\
+   87  exit\
+   88  cd /root/Development\
+   89  ls -l /root/Development\
+   90  cd /root/Development\
+   91  cd /Development\
+   92  sudo chmod 700 /root/Development\
+   93  sudo ls -l\
+   94  cd /root/Development\
+   95  sudo chmod 750 /root/Development\
+   96  sudo ls -l\
+   97  cd /root/Development\
+   98  exit\
+   99  pwd\
+  100  cd /home\
+  101  pwd\
+  102  ls -l\
+  103  cd -\
+  104  cd ~/Department\
+  105  cd /root/Department\
+  106  sudo cd /root/Department\
+  107  cd root\
+  108  cd /root\
+  109  sudo su jwaller\
+  110  exit\
+  111  ls -l\
+  112  sudo ls -l\
+  113  sudo ls -l /Development\
+  114  sudo ls -l /root/Development\
+  115  whoami\
+  116  cd /home\
+  117  ls -l\
+  118  ls -l /root/Development\
+  119  cd jwaller\
+  120  ls -l\
+  121  sudo chmod 700 /root/Development\
+  122  cd /root/Devlopment\
+  123  ls -ltr\
+  124  id\
+  125  pwd\
+  126  cd /root\
+  127  sudo \
+  128  sudo ls /\
+  129  sudo ls -ltr\
+  130  sudo  /ls -ltr\
+  131  sudo  / ls -ltr\
+  132  sudo /root\
+  133  sudo bash \
+  134  id\
+  135  cd /root/Development\
+  136  sudo \
+  137  sudo -i \
+  138  id\
+  139  sudo -i \
+  140  sudo - \
+  141  sudo -i\
+  142  cd /opt/Development/\
+  143  sudo /root\
+  144  sudo -i \
+  145  cd /root/Development/\
+  146  history\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root/Development\cf2 $ ls -ltr\
+total 0\
+-rwxrwxr-x 1 jwaller Developers 0 Feb 19 00:54 \cf4 file2.txt\cf2 \
+-rwxrwxr-x 1 jwaller Developers 0 Feb 19 00:54 \cf4 file1.txt\cf2 \
+-rwxrwxr-x 1 jwaller Developers 0 Feb 19 00:55 \cf4 file3.txt\cf2 \
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root/Development\cf2 $ \
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root/Development\cf2 $ \
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root/Development\cf2 $ \
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root/Development\cf2 $ \
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root/Development\cf2 $ \
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root/Development\cf2 $ sudo -i \
+root@ip-172-31-31-90:~# cd /root \
+root@ip-172-31-31-90:~# mkdir test\
+root@ip-172-31-31-90:~# ls -ltr\
+total 20\
+drwxrwxr-x 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+drwxrwxr-x 2 jwaller Developers 4096 Feb 19 00:55 \cf5 Development\cf2 \
+drwxrwxr-x 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwxrwxr-x 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+drwxr-xr-x 2 root    root       4096 Feb 19 17:49 \cf5 test\cf2 \
+root@ip-172-31-31-90:~# mkdir test1\
+root@ip-172-31-31-90:~# ls -ltr\
+total 24\
+drwxrwxr-x 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+drwxrwxr-x 2 jwaller Developers 4096 Feb 19 00:55 \cf5 Development\cf2 \
+drwxrwxr-x 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwxrwxr-x 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+drwxr-xr-x 2 root    root       4096 Feb 19 17:49 \cf5 test\cf2 \
+drwxr-xr-x 2 root    root       4096 Feb 19 17:50 \cf5 test1\cf2 \
+root@ip-172-31-31-90:~# chown -R jwaller:Developers test^C\
+root@ip-172-31-31-90:~# chmod -R 700 test \
+root@ip-172-31-31-90:~# ls -ltr\
+total 24\
+drwxrwxr-x 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+drwxrwxr-x 2 jwaller Developers 4096 Feb 19 00:55 \cf5 Development\cf2 \
+drwxrwxr-x 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwxrwxr-x 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+drwx------ 2 root    root       4096 Feb 19 17:49 \cf5 test\cf2 \
+drwxr-xr-x 2 root    root       4096 Feb 19 17:50 \cf5 test1\cf2 \
+root@ip-172-31-31-90:~# chown  -R jwaller:Developers /root/test\
+root@ip-172-31-31-90:~# ls -ltr\
+total 24\
+drwxrwxr-x 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+drwxrwxr-x 2 jwaller Developers 4096 Feb 19 00:55 \cf5 Development\cf2 \
+drwxrwxr-x 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwxrwxr-x 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+drwx------ 2 jwaller Developers 4096 Feb 19 17:49 \cf5 test\cf2 \
+drwxr-xr-x 2 root    root       4096 Feb 19 17:50 \cf5 test1\cf2 \
+root@ip-172-31-31-90:~# exit \
+logout\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root/Development\cf2 $ cd /root/test\
+test/  test1/ \
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root/Development\cf2 $ cd /root/test\
+test/  test1/ \
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root/Development\cf2 $ cd /root/test\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root/test\cf2 $ ls -ltr\
+total 0\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root/test\cf2 $ cd ..\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ ls -ltr\
+total 24\
+drwxrwxr-x 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+drwxrwxr-x 2 jwaller Developers 4096 Feb 19 00:55 \cf5 Development\cf2 \
+drwxrwxr-x 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwxrwxr-x 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+drwx------ 2 jwaller Developers 4096 Feb 19 17:49 \cf5 test\cf2 \
+drwxr-xr-x 2 root    root       4096 Feb 19 17:50 \cf5 test1\cf2 \
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo -i\
+root@ip-172-31-31-90:~# cd /\
+root@ip-172-31-31-90:/# ls -ltr\
+total 64\
+lrwxrwxrwx   1 root root     8 Oct 25 21:51 \cf8 sbin\cf2  -> \cf5 usr/sbin\cf2 \
+lrwxrwxrwx   1 root root     7 Oct 25 21:51 \cf8 bin\cf2  -> \cf5 usr/bin\cf2 \
+lrwxrwxrwx   1 root root     9 Oct 25 21:51 \cf8 lib64\cf2  -> \cf5 usr/lib64\cf2 \
+lrwxrwxrwx   1 root root     9 Oct 25 21:51 \cf8 lib32\cf2  -> \cf5 usr/lib32\cf2 \
+lrwxrwxrwx   1 root root     7 Oct 25 21:51 \cf8 lib\cf2  -> \cf5 usr/lib\cf2 \
+lrwxrwxrwx   1 root root    10 Oct 25 21:51 \cf8 libx32\cf2  -> \cf5 usr/libx32\cf2 \
+drwxr-xr-x   2 root root  4096 Oct 25 21:51 \cf5 mnt\cf2 \
+drwxr-xr-x   2 root root  4096 Oct 25 21:51 \cf5 srv\cf2 \
+drwxr-xr-x   2 root root  4096 Oct 25 21:51 \cf5 media\cf2 \
+drwxr-xr-x  14 root root  4096 Oct 25 21:52 \cf5 usr\cf2 \
+drwxr-xr-x  13 root root  4096 Oct 25 21:53 \cf5 var\cf2 \
+drwx------   2 root root 16384 Oct 25 21:54 \cf5 lost+found\cf2 \
+drwxr-xr-x   8 root root  4096 Oct 25 21:56 \cf5 snap\cf2 \
+drwxr-xr-x   4 root root  4096 Feb 18 05:40 \cf5 boot\cf2 \
+drwxr-xr-x  10 root root  4096 Feb 19 04:29 \cf5 home\cf2 \
+dr-xr-xr-x  13 root root     0 Feb 19 05:02 \cf5 sys\cf2 \
+dr-xr-xr-x 173 root root     0 Feb 19 05:02 \cf5 proc\cf2 \
+drwxr-xr-x  17 root root  3260 Feb 19 05:02 \cf5 dev\cf2 \
+drwxr-xr-x  96 root root  4096 Feb 19 05:26 \cf5 etc\cf2 \
+drwxr-xr-x  28 root root   940 Feb 19 16:57 \cf5 run\cf2 \
+drwxrwxrwt  12 root root  4096 Feb 19 16:57 \cf9 \cb7 tmp\cf2 \cb3 \
+drwxr-xr-x   3 root root  4096 Feb 19 17:41 \cf5 opt\cf2 \
+drwxrwxr-x   9 root root  4096 Feb 19 17:50 \cf5 root\cf2 \
+root@ip-172-31-31-90:/# chmod 700 /root\
+root@ip-172-31-31-90:/# ls -ltr\
+total 64\
+lrwxrwxrwx   1 root root     8 Oct 25 21:51 \cf8 sbin\cf2  -> \cf5 usr/sbin\cf2 \
+lrwxrwxrwx   1 root root     7 Oct 25 21:51 \cf8 bin\cf2  -> \cf5 usr/bin\cf2 \
+lrwxrwxrwx   1 root root     9 Oct 25 21:51 \cf8 lib64\cf2  -> \cf5 usr/lib64\cf2 \
+lrwxrwxrwx   1 root root     9 Oct 25 21:51 \cf8 lib32\cf2  -> \cf5 usr/lib32\cf2 \
+lrwxrwxrwx   1 root root     7 Oct 25 21:51 \cf8 lib\cf2  -> \cf5 usr/lib\cf2 \
+lrwxrwxrwx   1 root root    10 Oct 25 21:51 \cf8 libx32\cf2  -> \cf5 usr/libx32\cf2 \
+drwxr-xr-x   2 root root  4096 Oct 25 21:51 \cf5 mnt\cf2 \
+drwxr-xr-x   2 root root  4096 Oct 25 21:51 \cf5 srv\cf2 \
+drwxr-xr-x   2 root root  4096 Oct 25 21:51 \cf5 media\cf2 \
+drwxr-xr-x  14 root root  4096 Oct 25 21:52 \cf5 usr\cf2 \
+drwxr-xr-x  13 root root  4096 Oct 25 21:53 \cf5 var\cf2 \
+drwx------   2 root root 16384 Oct 25 21:54 \cf5 lost+found\cf2 \
+drwxr-xr-x   8 root root  4096 Oct 25 21:56 \cf5 snap\cf2 \
+drwxr-xr-x   4 root root  4096 Feb 18 05:40 \cf5 boot\cf2 \
+drwxr-xr-x  10 root root  4096 Feb 19 04:29 \cf5 home\cf2 \
+dr-xr-xr-x  13 root root     0 Feb 19 05:02 \cf5 sys\cf2 \
+dr-xr-xr-x 173 root root     0 Feb 19 05:02 \cf5 proc\cf2 \
+drwxr-xr-x  17 root root  3260 Feb 19 05:02 \cf5 dev\cf2 \
+drwxr-xr-x  96 root root  4096 Feb 19 05:26 \cf5 etc\cf2 \
+drwxr-xr-x  28 root root   940 Feb 19 16:57 \cf5 run\cf2 \
+drwxrwxrwt  12 root root  4096 Feb 19 16:57 \cf9 \cb7 tmp\cf2 \cb3 \
+drwxr-xr-x   3 root root  4096 Feb 19 17:41 \cf5 opt\cf2 \
+drwx------   9 root root  4096 Feb 19 17:50 \cf5 root\cf2 \
+root@ip-172-31-31-90:/# exit\
+logout\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ ls -ltr\
+ls: cannot open directory '.': Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /root/Development\
+bash: cd: /root/Development: Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo i-\
+sudo: i-: command not found\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo -i\
+root@ip-172-31-31-90:~# cd /root/\
+root@ip-172-31-31-90:~# ls -ltr\
+total 24\
+drwxrwxr-x 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+drwxrwxr-x 2 jwaller Developers 4096 Feb 19 00:55 \cf5 Development\cf2 \
+drwxrwxr-x 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwxrwxr-x 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+drwx------ 2 jwaller Developers 4096 Feb 19 17:49 \cf5 test\cf2 \
+drwxr-xr-x 2 root    root       4096 Feb 19 17:50 \cf5 test1\cf2 \
+root@ip-172-31-31-90:~# chmod 744 /root\
+root@ip-172-31-31-90:~# ls -ltr\
+total 24\
+drwxrwxr-x 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+drwxrwxr-x 2 jwaller Developers 4096 Feb 19 00:55 \cf5 Development\cf2 \
+drwxrwxr-x 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwxrwxr-x 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+drwx------ 2 jwaller Developers 4096 Feb 19 17:49 \cf5 test\cf2 \
+drwxr-xr-x 2 root    root       4096 Feb 19 17:50 \cf5 test1\cf2 \
+root@ip-172-31-31-90:~# cd ..\
+root@ip-172-31-31-90:/# ls -ltr\
+total 64\
+lrwxrwxrwx   1 root root     8 Oct 25 21:51 \cf8 sbin\cf2  -> \cf5 usr/sbin\cf2 \
+lrwxrwxrwx   1 root root     7 Oct 25 21:51 \cf8 bin\cf2  -> \cf5 usr/bin\cf2 \
+lrwxrwxrwx   1 root root     9 Oct 25 21:51 \cf8 lib64\cf2  -> \cf5 usr/lib64\cf2 \
+lrwxrwxrwx   1 root root     9 Oct 25 21:51 \cf8 lib32\cf2  -> \cf5 usr/lib32\cf2 \
+lrwxrwxrwx   1 root root     7 Oct 25 21:51 \cf8 lib\cf2  -> \cf5 usr/lib\cf2 \
+lrwxrwxrwx   1 root root    10 Oct 25 21:51 \cf8 libx32\cf2  -> \cf5 usr/libx32\cf2 \
+drwxr-xr-x   2 root root  4096 Oct 25 21:51 \cf5 mnt\cf2 \
+drwxr-xr-x   2 root root  4096 Oct 25 21:51 \cf5 srv\cf2 \
+drwxr-xr-x   2 root root  4096 Oct 25 21:51 \cf5 media\cf2 \
+drwxr-xr-x  14 root root  4096 Oct 25 21:52 \cf5 usr\cf2 \
+drwxr-xr-x  13 root root  4096 Oct 25 21:53 \cf5 var\cf2 \
+drwx------   2 root root 16384 Oct 25 21:54 \cf5 lost+found\cf2 \
+drwxr-xr-x   8 root root  4096 Oct 25 21:56 \cf5 snap\cf2 \
+drwxr-xr-x   4 root root  4096 Feb 18 05:40 \cf5 boot\cf2 \
+drwxr-xr-x  10 root root  4096 Feb 19 04:29 \cf5 home\cf2 \
+dr-xr-xr-x  13 root root     0 Feb 19 05:02 \cf5 sys\cf2 \
+dr-xr-xr-x 173 root root     0 Feb 19 05:02 \cf5 proc\cf2 \
+drwxr-xr-x  17 root root  3260 Feb 19 05:02 \cf5 dev\cf2 \
+drwxr-xr-x  96 root root  4096 Feb 19 05:26 \cf5 etc\cf2 \
+drwxr-xr-x  28 root root   940 Feb 19 16:57 \cf5 run\cf2 \
+drwxrwxrwt  12 root root  4096 Feb 19 16:57 \cf9 \cb7 tmp\cf2 \cb3 \
+drwxr-xr-x   3 root root  4096 Feb 19 17:41 \cf5 opt\cf2 \
+drwxr--r--   9 root root  4096 Feb 19 17:50 \cf5 root\cf2 \
+root@ip-172-31-31-90:/# exit\
+logout\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo - \
+sudo: -: command not found\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo -i \
+root@ip-172-31-31-90:~# sudo 760 /root\
+sudo: 760: command not found\
+root@ip-172-31-31-90:~# chmod -R  744 /roo\
+chmod: cannot access '/roo': No such file or directory\
+root@ip-172-31-31-90:~# chmod -R  744 /root\
+root@ip-172-31-31-90:~# exit \
+logout\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo -i \
+root@ip-172-31-31-90:~# chmod 775 /root\
+root@ip-172-31-31-90:~# exit \
+logout\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /root/Development/\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root/Development\cf2 $ exit\
+exit\
+root@ip-172-31-31-90:~# passwd jewart \
+New password: \
+Retype new password: \
+passwd: password updated successfully\
+root@ip-172-31-31-90:~# sudo su jewart\
+To run a command as administrator (user "root"), use "sudo <command>".\
+See "man sudo_root" for details.\
+\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ su jewart\
+Password: \
+To run a command as administrator (user "root"), use "sudo <command>".\
+See "man sudo_root" for details.\
+\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ ls -l\
+total 24\
+drwxr--r-- 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 00:55 \cf5 Development\cf2 \
+drwxr--r-- 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwxr--r-- 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 17:49 \cf5 test\cf2 \
+drwxr--r-- 2 root    root       4096 Feb 19 17:50 \cf5 test1\cf2 \
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ ls -l /root/Development\
+ls: cannot access '/root/Development/file2.txt': Permission denied\
+ls: cannot access '/root/Development/file3.txt': Permission denied\
+ls: cannot access '/root/Development/file1.txt': Permission denied\
+total 0\
+-????????? ? ? ? ?            ? file1.txt\
+-????????? ? ? ? ?            ? file2.txt\
+-????????? ? ? ? ?            ? file3.txt\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo chmod 770 /root\
+[sudo] password for jewart: \
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ ls -l /root/Development\
+ls: cannot access '/root/Development': Permission denied\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ ls -l /root/Analytics\
+ls: cannot access '/root/Analytics': Permission denied\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo chmod 770 /root/Analytics\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ ls -l /root/Analytics\
+ls: cannot access '/root/Analytics': Permission denied\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /root/Analytics\
+bash: cd: /root/Analytics: Permission denied\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo ls -l\
+total 24\
+drwxrwx--- 2 jewart  Analysts   4096 Feb 19 00:55 Analytics\
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 00:55 Development\
+drwxr--r-- 2 bdorsey Operators  4096 Feb 19 00:55 Operations\
+drwxr--r-- 4 root    root       4096 Feb  5 16:24 snap\
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 17:49 test\
+drwxr--r-- 2 root    root       4096 Feb 19 17:50 test1\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /root/Analytics\
+bash: cd: /root/Analytics: Permission denied\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo chmod 775 /root/Analytics\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo ls -l\
+total 24\
+drwxrwxr-x 2 jewart  Analysts   4096 Feb 19 00:55 Analytics\
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 00:55 Development\
+drwxr--r-- 2 bdorsey Operators  4096 Feb 19 00:55 Operations\
+drwxr--r-- 4 root    root       4096 Feb  5 16:24 snap\
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 17:49 test\
+drwxr--r-- 2 root    root       4096 Feb 19 17:50 test1\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /root/Analytics\
+bash: cd: /root/Analytics: Permission denied\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo chmod 770 /root\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo ls -l\
+total 24\
+drwxrwxr-x 2 jewart  Analysts   4096 Feb 19 00:55 Analytics\
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 00:55 Development\
+drwxr--r-- 2 bdorsey Operators  4096 Feb 19 00:55 Operations\
+drwxr--r-- 4 root    root       4096 Feb  5 16:24 snap\
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 17:49 test\
+drwxr--r-- 2 root    root       4096 Feb 19 17:50 test1\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /root/Analytics\
+bash: cd: /root/Analytics: Permission denied\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ exit\
+exit\
+\cf4 jewart@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ exit\
+exit\
+root@ip-172-31-31-90:~# su jwaller\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /root/Development/\
+bash: cd: /root/Development/: Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ ls -l\
+ls: cannot open directory '.': Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo ls -l\
+total 24\
+drwxrwxr-x 2 jewart  Analysts   4096 Feb 19 00:55 Analytics\
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 00:55 Development\
+drwxr--r-- 2 bdorsey Operators  4096 Feb 19 00:55 Operations\
+drwxr--r-- 4 root    root       4096 Feb  5 16:24 snap\
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 17:49 test\
+drwxr--r-- 2 root    root       4096 Feb 19 17:50 test1\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /root/test\
+bash: cd: /root/test: Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo -i exit\
+[sudo] password for jwaller: \
+\
+Sorry, try again.\
+[sudo] password for jwaller: \
+Sorry, try again.\
+[sudo] password for jwaller: \
+sudo: 3 incorrect password attempts\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ exit\
+exit\
+root@ip-172-31-31-90:~# ls -l\
+total 24\
+drwxrwxr-x 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 00:55 \cf5 Development\cf2 \
+drwxr--r-- 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwxr--r-- 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 17:49 \cf5 test\cf2 \
+drwxr--r-- 2 root    root       4096 Feb 19 17:50 \cf5 test1\cf2 \
+root@ip-172-31-31-90:~# chmod 750 /root/Development\
+root@ip-172-31-31-90:~# chmod 750 /root/Analytics\
+root@ip-172-31-31-90:~# chmod 750 /root/Operations\
+root@ip-172-31-31-90:~# ls -l\
+total 24\
+drwxr-x--- 2 jewart  Analysts   4096 Feb 19 00:55 \cf5 Analytics\cf2 \
+drwxr-x--- 2 jwaller Developers 4096 Feb 19 00:55 \cf5 Development\cf2 \
+drwxr-x--- 2 bdorsey Operators  4096 Feb 19 00:55 \cf5 Operations\cf2 \
+drwxr--r-- 4 root    root       4096 Feb  5 16:24 \cf5 snap\cf2 \
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 17:49 \cf5 test\cf2 \
+drwxr--r-- 2 root    root       4096 Feb 19 17:50 \cf5 test1\cf2 \
+root@ip-172-31-31-90:~# su jwaller\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /root/test\
+bash: cd: /root/test: Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /root/Development/\
+bash: cd: /root/Development/: Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo chown :jwaller /root/Development\
+[sudo] password for jwaller: \
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /root/Development\
+bash: cd: /root/Development: Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /root/Development/\
+bash: cd: /root/Development/: Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ ls -l\
+ls: cannot open directory '.': Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo ls -l\
+total 24\
+drwxr-x--- 2 jewart  Analysts   4096 Feb 19 00:55 Analytics\
+drwxr-x--- 2 jwaller jwaller    4096 Feb 19 00:55 Development\
+drwxr-x--- 2 bdorsey Operators  4096 Feb 19 00:55 Operations\
+drwxr--r-- 4 root    root       4096 Feb  5 16:24 snap\
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 17:49 test\
+drwxr--r-- 2 root    root       4096 Feb 19 17:50 test1\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo chown :jwaller Developers\
+chown: cannot access 'Developers': No such file or directory\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo chmod 750 /root/Development\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /root/Development/\
+bash: cd: /root/Development/: Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ cd /root/Development\
+bash: cd: /root/Development: Permission denied\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo ls -l\
+total 24\
+drwxr-x--- 2 jewart  Analysts   4096 Feb 19 00:55 Analytics\
+drwxr-x--- 2 jwaller jwaller    4096 Feb 19 00:55 Development\
+drwxr-x--- 2 bdorsey Operators  4096 Feb 19 00:55 Operations\
+drwxr--r-- 4 root    root       4096 Feb  5 16:24 snap\
+drwxr--r-- 2 jwaller Developers 4096 Feb 19 17:49 test\
+drwxr--r-- 2 root    root       4096 Feb 19 17:50 test1\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo ls -l /root/Development\
+total 0\
+-rwxr--r-- 1 jwaller Developers 0 Feb 19 00:54 file1.txt\
+-rwxr--r-- 1 jwaller Developers 0 Feb 19 00:54 file2.txt\
+-rwxr--r-- 1 jwaller Developers 0 Feb 19 00:55 file3.txt\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo chmod 750 /root/Development\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ sudo ls -l /root/Development\
+total 0\
+-rwxr--r-- 1 jwaller Developers 0 Feb 19 00:54 file1.txt\
+-rwxr--r-- 1 jwaller Developers 0 Feb 19 00:54 file2.txt\
+-rwxr--r-- 1 jwaller Developers 0 Feb 19 00:55 file3.txt\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ exit\
+exit\
+root@ip-172-31-31-90:~# exit\
+logout\
+\cf4 jwaller@ip-172-31-31-90\cf2 :\cf5 /root\cf2 $ exit\
+exit\
+root@ip-172-31-31-90:~# history >> txt1\
+root@ip-172-31-31-90:~# cat txt1\
+    1  ls\
+    2  cd Test\
+    3  mkdir test1\
+    4  cd test1\
+    5  mkdir Development Development Analytics\
+    6  ls\
+    7  mkdir Operations\
+    8  ls\
+    9  touch Development/file1.txt\
+   10  touch Development/file2.txt\
+   11  touch Development/file3.txt\
+   12  touch Operations/file1.txt\
+   13  touch Operations/file2.txt\
+   14  touch Operations/file3.txt\
+   15  touch Analytics/file1.txt\
+   16  touch Analytics/file2.txt\
+   17  touch Analytics/file3.txt\
+   18  tree\
+   19  apt  install tree  # version 1.8.0-1\
+   20  tree\
+   21  groupadd Developers\
+   22  groupadd Operators\
+   23  groupadd "Data Analytics"\
+   24  groupadd Data Analytics\
+   25  groupadd Data_Analytics\
+   26  chown :Developers Development\
+   27  chown :Operators Operations\
+   28  chown :Data_Analytics Analytics\
+   29  ll\
+   30  chmod 770 Development\
+   31  chmod 770 Operations\
+   32  chmod 770 Analytics\
+   33  ll\
+   34  sudo useradd -m -s /bin/bash -G Developers jwaller\
+   35  sudo usermod -aG sudo jwaller\
+   36  sudo usermod -aG adm jwaller\
+   37  sudo usermod -aG www-data jwaller\
+   38  sudo usermod -aG Developers jwaller\
+   39  ll\
+   40  tree\
+   41  sudo usermod -aG Developers jwaller\
+   42  sudo useradd -m -s /bin/bash -G Operations bdorsey\
+   43  sudo usermod -aG sudo bdorsey\
+   44  sudo usermod -aG adm bdorsey\
+   45  sudo usermod -aG www-data bdorsey\
+   46  sudo usermod -aG Operations bdorsey\
+   47  sudo useradd -m -s /bin/bash -G Operations bdorsey\
+   48  sudo useradd -m -s /bin/bash -G Operators bdorsey\
+   49  sudo usermod -aG sudo bdorsey\
+   50  sudo usermod -aG www-data bdorsey\
+   51  sudo usermod -aG Operators bdorsey\
+   52  sudo useradd -m -s /bin/bash -G Data_Analytics jewart\
+   53  sudo usermod -aG sudo jewart\
+   54  sudo usermod -aG adm jewart\
+   55  sudo usermod -aG www-data jewart\
+   56  sudo usermod -aG Data_Analytics jewart\
+   57  sudo su -jwaller\
+   58  sudo su - jwaller\
+   59  cat /etc/passwd\
+   60  cat /etc/user\
+   61  exit\
+   62  ls -l\
+   63  pwd\
+   64  ls /home\
+   65  cd /home\
+   66  ls\
+   67  ls -l\
+   68  cd \\\
+   69  ls\
+   70  mkdir trial\
+   71  cd trial/\
+   72  vim role.sh\
+   73  chmod +x role.sh\
+   74  ./role.sh\
+   75  ls -l\
+   76  vim role.sh\
+   77  ./role.sh\
+   78  vim role.sh\
+   79  ./role.sh\
+   80  vim role.sh\
+   81  sudo su jwaller\
+   82  ls\
+   83  cd trial\
+   84  tree\
+   85  cd ..\
+   86  mkdir Development Operations Analytics\
+   87  ls\
+   88  tree\
+   89  rm -r trial\
+   90  tree\
+   91  touch Development/file1.txt\
+   92  touch Development/file2.txt\
+   93  touch Development/file3.txt\
+   94  touch Operations/file1.txt\
+   95  touch Operations/file2.txt\
+   96  touch Operations/file3.txt\
+   97  touch Analytics/file1.txt\
+   98  touch Analytics/file2.txt\
+   99  touch Analytics/file3.txt\
+  100  tree\
+  101  clear\
+  102  ls\
+  103  tree\
+  104  sudo groupadd Developers\
+  105  # Create the Operations group\
+  106  sudo groupadd Operations\
+  107  # Create the Data Analysts group\
+  108  sudo groupadd Analytics\
+  109  sudo useradd -m -s /bin/bash -G Developers jwaller\
+  110  sudo su jwaller\
+  111  sudo passwd jwaller\
+  112  sudo su jwaller\
+  113  sudo chmod 750 Development\
+  114  ls -l\
+  115  sudo chown :Developers Development\
+  116  ls -l\
+  117  sudo usermod -aG Developers jwaller\
+  118  ls -l\
+  119  sudo su jwaller\
+  120  sudo groupadd Operators\
+  121  sudo chown :Operators Operations\
+  122  ls -l\
+  123  sudo chmod 750 Operations\
+  124  ls -l\
+  125  sudo chown :Analysts Analytics\
+  126  sudo groupadd Analysts\
+  127  sudo chown :Analysts Analytics\
+  128  sudo chmod 750 Analytics\
+  129  ls -l\
+  130  sudo useradd -m -s /bin/bash -G Developers jwaller\
+  131  sudo useradd -m -s /bin/bash -G Developers jwaller1\
+  132  sudo usermod -aG sudo jwaller\
+  133  sudo usermod -aG sudo jwaller1\
+  134  sudo usermod -aG adm jwaller\
+  135  sudo usermod -aG adm jwaller1\
+  136  sudo usermod -aG Developers jwaller\
+  137  ls -l\
+  138  sudo su jwaller\
+  139  cat /etc/group\
+  140  ls -l /Development\
+  141  ls\
+  142  ls -l ./Development\
+  143  ls -l\
+  144  tree\
+  145  sudo chown :jwaller Development\
+  146  ls -l\
+  147  sudo chown :jwaller Developers\
+  148  sudo chown :jwaller Development\
+  149  sudo su jwaller\
+  150  ls -l\
+  151  sudo chown :Developers Development\
+  152  ls -l\
+  153  ls -l /home\
+  154  userdel -r jwaller1\
+  155  ls -l /home\
+  156  ls -l\
+  157  sudo chmod 660 Analytics\
+  158  ls -l\
+  159  sudo su jwaller\
+  160  id -u jwaller\
+  161  vim test3.sh\
+  162  chmod 640 test3.sh\
+  163  chmod 770 test3.sh\
+  164  ./test3.sh\
+  165  ls -l\
+  166  rm test3.sh\
+  167  ls -l\
+  168  chmod u+g Development\
+  169  ls -l\
+  170  chmod +g Development\
+  171  ls -l\
+  172  chmod 450 Development\
+  173  ls -l\
+  174  cd /root/Development\
+  175  ls\
+  176  cd -\
+  177  cd /etc/group\
+  178  cd etc/group\
+  179  cat etc/group\
+  180  cat /etc/group\
+  181  chown :Analysts Analytics\
+  182  sudo useradd -m -s /bin/bash -G Analysts jewart\
+  183  sudo usermod -aG sudo jewart\
+  184  sudo usermod -aG adm jewart\
+  185  sudo usermod -aG www-data jewart\
+  186  sudo usermod -aG "Data Analysts" jewart\
+  187  sudo usermod -aG Analysts jewart\
+  188  cat /etc/group\
+  189  find / -group Developers\
+  190  find / -group Operators\
+  191  find / -group Analysts\
+  192  apt-get install adduser\
+  193  adduser user4\
+  194  userdel user4\
+  195  chmod 750 Development\
+  196  chmod 750 Operations\
+  197  chmod 750 Analytics\
+  198  ls -l\
+  199  sudo su jwaller\
+  200  ls -l\
+  201  chmod 770 /root/Development\
+  202  ls -l\
+  203  sudo su jwaller\
+  204  ls -l\
+  205  sudo su jwaller\
+  206  ls -l\
+  207  sudo su jwaller\
+  208  cat etc/group\
+  209  cat /etc/group\
+  210  clear\
+  211  chown bdorsey Operations\
+  212  chown jewart Analytics\
+  213  ls -l\
+  214  groupdel group1\
+  215  userdel user1\
+  216  userdel user2\
+  217  groupdel group1\
+  218  groupdel group2\
+  219  tree\
+  220  find / -group Analysts\
+  221  find / -group Developers\
+  222  find / -group Operators\
+  223  exit\
+  224  ls -l\
+  225  sudo su jwaller\
+  226  history >> txt1\
+root@ip-172-31-31-90:~# \
+}
