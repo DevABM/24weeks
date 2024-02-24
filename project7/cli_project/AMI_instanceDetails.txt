@@ -1,0 +1,152 @@
+{
+    "Reservations": [
+        {
+            "Groups": [],
+            "Instances": [
+                {
+                    "AmiLaunchIndex": 0,
+                    "ImageId": "ami-00b1467a1b6d65ebd",
+                    "InstanceId": "i-01636f766c895f853",
+                    "InstanceType": "t2.micro",
+                    "KeyName": "LUIT",
+                    "LaunchTime": "2024-02-23T20:22:19+00:00",
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "Placement": {
+                        "AvailabilityZone": "us-east-1a",
+                        "GroupName": "",
+                        "Tenancy": "default"
+                    },
+                    "PrivateDnsName": "ip-172-31-12-76.ec2.internal",
+                    "PrivateIpAddress": "172.31.12.76",
+                    "ProductCodes": [],
+                    "PublicDnsName": "ec2-44-222-250-247.compute-1.amazonaws.com",
+                    "PublicIpAddress": "44.222.250.247",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    },
+                    "StateTransitionReason": "",
+                    "SubnetId": "subnet-0cb606ad87c468439",
+                    "VpcId": "vpc-01d97d1bfd9e1e173",
+                    "Architecture": "x86_64",
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/xvda",
+                            "Ebs": {
+                                "AttachTime": "2024-02-23T20:22:20+00:00",
+                                "DeleteOnTermination": true,
+                                "Status": "attached",
+                                "VolumeId": "vol-033eeab50476859d2"
+                            }
+                        }
+                    ],
+                    "ClientToken": "f9bdf612-66ac-46b8-9c45-06f3e2727b78",
+                    "EbsOptimized": false,
+                    "EnaSupport": true,
+                    "Hypervisor": "xen",
+                    "NetworkInterfaces": [
+                        {
+                            "Association": {
+                                "IpOwnerId": "amazon",
+                                "PublicDnsName": "ec2-44-222-250-247.compute-1.amazonaws.com",
+                                "PublicIp": "44.222.250.247"
+                            },
+                            "Attachment": {
+                                "AttachTime": "2024-02-23T20:22:19+00:00",
+                                "AttachmentId": "eni-attach-0d1c95c0659cdd3ea",
+                                "DeleteOnTermination": true,
+                                "DeviceIndex": 0,
+                                "Status": "attached",
+                                "NetworkCardIndex": 0
+                            },
+                            "Description": "",
+                            "Groups": [
+                                {
+                                    "GroupName": "LUIT_SG",
+                                    "GroupId": "sg-07258ecc94a872318"
+                                }
+                            ],
+                            "Ipv6Addresses": [],
+                            "MacAddress": "02:9c:5e:a1:60:cf",
+                            "NetworkInterfaceId": "eni-02daf81ee47fed499",
+                            "OwnerId": "869754947683",
+                            "PrivateDnsName": "ip-172-31-12-76.ec2.internal",
+                            "PrivateIpAddress": "172.31.12.76",
+                            "PrivateIpAddresses": [
+                                {
+                                    "Association": {
+                                        "IpOwnerId": "amazon",
+                                        "PublicDnsName": "ec2-44-222-250-247.compute-1.amazonaws.com",
+                                        "PublicIp": "44.222.250.247"
+                                    },
+                                    "Primary": true,
+                                    "PrivateDnsName": "ip-172-31-12-76.ec2.internal",
+                                    "PrivateIpAddress": "172.31.12.76"
+                                }
+                            ],
+                            "SourceDestCheck": true,
+                            "Status": "in-use",
+                            "SubnetId": "subnet-0cb606ad87c468439",
+                            "VpcId": "vpc-01d97d1bfd9e1e173",
+                            "InterfaceType": "interface"
+                        }
+                    ],
+                    "RootDeviceName": "/dev/xvda",
+                    "RootDeviceType": "ebs",
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "LUIT_SG",
+                            "GroupId": "sg-07258ecc94a872318"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Tags": [
+                        {
+                            "Key": "Name",
+                            "Value": "AMI_EC2_CLI"
+                        }
+                    ],
+                    "VirtualizationType": "hvm",
+                    "CpuOptions": {
+                        "CoreCount": 1,
+                        "ThreadsPerCore": 1
+                    },
+                    "CapacityReservationSpecification": {
+                        "CapacityReservationPreference": "open"
+                    },
+                    "HibernationOptions": {
+                        "Configured": false
+                    },
+                    "MetadataOptions": {
+                        "State": "applied",
+                        "HttpTokens": "required",
+                        "HttpPutResponseHopLimit": 2,
+                        "HttpEndpoint": "enabled",
+                        "HttpProtocolIpv6": "disabled",
+                        "InstanceMetadataTags": "disabled"
+                    },
+                    "EnclaveOptions": {
+                        "Enabled": false
+                    },
+                    "BootMode": "uefi-preferred",
+                    "PlatformDetails": "Linux/UNIX",
+                    "UsageOperation": "RunInstances",
+                    "UsageOperationUpdateTime": "2024-02-23T20:22:19+00:00",
+                    "PrivateDnsNameOptions": {
+                        "HostnameType": "ip-name",
+                        "EnableResourceNameDnsARecord": false,
+                        "EnableResourceNameDnsAAAARecord": false
+                    },
+                    "MaintenanceOptions": {
+                        "AutoRecovery": "default"
+                    },
+                    "CurrentInstanceBootMode": "legacy-bios"
+                }
+            ],
+            "OwnerId": "869754947683",
+            "ReservationId": "r-0efec369bd4b81095"
+        }
+    ]
+}
