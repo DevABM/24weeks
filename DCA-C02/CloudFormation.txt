@@ -1,0 +1,277 @@
+I'm going to deep dive into some of the components of a CloudFormation template.
+
+So CloudFormation templates as you know,
+
+are YAML or JSON-based templates that are used to describe
+
+the end state of the infrastructure that you want to create using CloudFormation.
+
+After creating the template, you can then upload it to CloudFormation directly
+
+or you can upload it to S3
+
+and then use CloudFormation to connect to S3 when you're creating your stack.
+
+CloudFormation will read the template and then make
+
+the API calls to provision your infrastructure on your behalf.
+
+And then the resulting resources are known as a stack.
+
+We have logical IDs which are used to reference resources within the template.
+
+Then we have physical IDs which are used to identify
+
+resources outside the CloudFormation after they've actually been created.
+
+Now let's look at some of the functions such as
+
+intrinsic functions that we can use in a template.
+
+CloudFormation provides several built-in functions
+
+that help you to manage your stacks.
+
+And these are known as intrinsic functions
+
+and they help you to assign values to properties
+
+that are not available until runtime.
+
+We'll go over some of them in this lesson but there's lots more
+
+and you can look at the full list here on the AWS website.
+
+So let's start off looking at the intrinsic function called Ref.
+
+This returns the value of the specified parameter or resource.
+
+When you specify a parameter's logical name, it will return
+
+the value of the parameter.
+
+And if you specify a resource's logical name,
+
+it will return the value that you can typically use to then refer to that resource,
+
+such as the physical ID.
+
+So let's look at an example.
+
+This resource declaration is for an elastic IP address.
+
+And it needs the instance ID of an EC2 instance.
+
+So it's going to use the Ref function to specify the instance ID of the EC2
+
+instance resource.
+
+So we can see here we have the property for the Elastic IP address
+
+and we need the instance ID.
+
+So it's using Ref and it's referencing my EC2 instance which can be found
+
+somewhere else in the template.
+
+Next we have Fn Get Att.
+
+So this is an intrinsic function that returns
+
+the value of an attribute from a resource in the template.
+
+Here's the full syntax in YAML and here's the short form in YAML.
+
+Now, let's have a look at an example.
+
+This template will use the get at to actually return certain values for the ELB.
+
+Firstly, it's going to return the sourcesecuritygroup.owneralias.
+
+So here, within the security group ingress rule,
+
+we need to identify the security group owner ID.
+
+And so we're going to use get att to find it within the MyELB resource.
+
+And the same then for the source security group name.
+
+We then have FindinMap.
+
+This returns the value corresponding to keys in a
+
+two-level map that's declared in the mapping section.
+
+Here's the full syntax in YAML and then the short form in YAML.
+
+So again, let's have a look at an example.
+
+So this example shows how to use finding map for a template
+
+with a mapping section that contains a single map.
+
+And that's called region map and you can see that here.
+
+And within that we have regions defined
+
+and then the AMIs for specific architectures.
+
+And so we're using
+
+the FindInMap down here in resources where we're declaring the my EC2 instance.
+
+We've got properties, then we've got image ID,
+
+and we need to know the AMI ID for this resource.
+
+And so we're going to use FindInMap.
+
+Next, we have resources.
+
+So the required resources section will declare
+
+the AWS resources that you need to include
+
+in the stack such as EC2 or S3 buckets or whatever it is you're provisioning.
+
+Now this is a mandatory section.
+
+Resources are declared and can reference each other.
+
+So here we can see an example of an EC2 instance being declared as a resource
+
+within the template.
+
+Next we have parameters.
+
+This is an optional section that you can use to customize your templates.
+
+Parameters enable you to input your custom values to your template
+
+when you create or update your stack.
+
+And they're useful for template reuse.
+
+And here's an example where we're using parameters to define the
+
+instance types that we want to allow for our EC2 instances.
+
+So the type is string,
+
+the allowed values are the three different EC2 instance types we want to allow.
+
+And then the default here
+
+is the one which will be selected by default if you don't change it.
+
+Then we have mappings.
+
+This is an optional section that matches a key to a
+
+corresponding set of named values.
+
+So we saw this in another slide just a little while ago.
+
+We can see here we have a region map.
+
+And within that map we then have us-east-1, us-west-1,
+
+and then we've defined the AMIs
+
+for specific architectures within each of those regions.
+
+Now an exam tip here, with mappings you can
+
+set the values based on the region as we can see.
+
+And therefore you can create a mapping that uses the region name as a key
+
+and contains the values you want to specify for each specific region.
+
+So if you're defining, for example a template which deploys EC2 instances
+
+and you want to use it across regions,
+
+you're going to need to supply different AMI IDs.
+
+Therefore you can use region map to solve that issue.
+
+We then have output.
+
+So this is another optional section where you can declare
+
+output values that you want to import to other stacks.
+
+And you can also return them in response to certain
+
+things like stack calls or view them in the console.
+
+So in this example here, we have an output and what this will do
+
+is return the idea of a VPC within the value here
+
+and then it's going to record that for cross stack referencing.
+
+We then have conditions.
+
+This is another optional section that contains statements that define
+
+the circumstances under which entities are created or configured.
+
+For example,
+
+in this sample code here, what's going to happen
+
+is the resources are only going to be created
+
+if the ENV type parameter is equal to prod.
+
+So here we've got Ref ENV type, and if it's equal to prod,
+
+then the condition will pass and that resource will be created.
+
+If it was dead for example of some other value
+
+then it would fail and the resources not created.
+
+Lastly, we have the transformed section. This is another optional section
+
+that specifies one or more macros that CloudFormation uses to process your template.
+
+You can use the transform section to actually reference
+
+additional code that you might have stored in. S3.
+
+It could be code such as lambda code or other snippets of CloudFormation code.
+
+Now this one is really important for the exam to understand.
+
+It's AWS and then serverless.
+
+This transform specifies the version of the AWS
+
+serverless application model, AWS SAM to use and we're going
+
+to learn a bit more about that later on.
+
+This model defines the SAM syntax that you can use
+
+and how CloudFormation will process it.
+
+Again, we'll look at that in a bit more detail in another lesson.
+
+We also have AWS Include.
+
+Now, this transform works with template snippets that are stored
+
+separately from the main CloudFormation templates.
+
+It's always good to look at some examples. So let's have a look at some example code.
+
+So here we're using the AWS serverless transform
+
+to specify a resource, which is a lambda function.
+
+And it's a way of simplifying how we can define our lambda function and its
+
+code so we can see what the code is being referenced in the code URI there as an S3
