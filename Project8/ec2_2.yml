@@ -1,25 +1,44 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Launch an EC2 instance with Apache in existing VPC"
-
+Parameters:
+  MyVpcId:
+    Type: "AWS::EC2::VPC::Id"
+    Description: "VPC ID"
+  KeyName:
+    Type: "AWS::EC2::KeyPair::KeyName"
+    Description: "Key Pair Name"
+  InstanceType:
+    Type: "String"
+    Description: "Instance Type"
+    Default: "t2.micro"
+  MyImageId:
+    Type: "AWS::EC2::Image::Id"
+    Description: "AMI ID"
+    Default: "ami-0440d3b780d96b29d"
+  
+  
+    
 Resources:
   # Instance definition
+  
   MyInstance:
     Type: "AWS::EC2::Instance"
     Properties:
-      ImageId: "ami-05943d624f2a7e87f" 
-      InstanceType: "t2.micro" # Adjust as needed
-      SecurityGroups: 
-        - !Ref MySecurityGroup # Reference your existing security group ID
-      SubnetId: !Ref MySubnet # Reference your existing subnet ID
+      ImageId: 
+        Ref: MyImageId # Reference your existing AMI ID 
+      InstanceType: "t2.micro" # Adjust as needed      
+      SecurityGroupIds: "sg-07f3fc54b9f4f06f5"
+          
       UserData:
         Fn::Base64: |
           #!/bin/bash
+          sudo su
           yum update -y
-          yum install httpd -y
+          yum install -y httpd
           systemctl start httpd
           systemctl enable httpd
-          echo "Hello, world!" > /var/www/html/index.html
-
+          echo "Hello World from $(hostname -f)" > /var/www/html/index.html
 Outputs:
-  PublicIp:
-    Value: !GetAtt MyInstance.PublicIpAddress
+  AppURL:
+    Description: Apache App Access URL
+    Value: !Sub 'http://${MyInstance.PublicDnsName}:80/index.html'          
