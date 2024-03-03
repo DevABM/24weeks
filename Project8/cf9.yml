@@ -1,0 +1,136 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: This template deploys a VPC, with a set of 3 public  spread across three Availability Zones. It then launches a Launch Template for an Apache web server into the public subnet. It also deploys Application Load Balancer and an auto scaling group for the web server.
+Parameters:
+  EnvironmentName:
+    Description: An environment name that is prefixed to resource names
+    Type: String
+  VpcCIDR:
+    Description: Please enter the IP range (CIDR notation) for this VPC
+    Type: String
+    Default: 10.10.0.0/16
+  PublicSubnet1CIDR:
+    Description: Please enter the IP range (CIDR notation) for the public subnet in the first Availability Zone
+    Type: String
+    Default: 10.10.1.0/24
+  PublicSubnet2CIDR:
+    Description: Please enter the IP range (CIDR notation) for the public subnet in the second Availability Zone
+    Type: String
+    Default: 10.10.2.0/24
+  PublicSubnet3CIDR:
+    Description: Please enter the IP range (CIDR notation) for the public subnet in the third Availability Zone
+    Type: String
+    Default: 10.10.3.0/24
+  MyVpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: VPC ID
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: Key Pair Name
+  MySubnet1:
+    Type: AWS::EC2::Subnet::Id
+    Description: Subnet ID
+  MySubnet2:
+    Type: AWS::EC2::Subnet::Id
+    Description: Subnet ID
+  MySubnet3:
+    Type: AWS::EC2::Subnet::Id
+    Description: Subnet ID
+
+  MySecurityGroup:
+    Type: AWS::EC2::SecurityGroup::Id
+    Description: Security Group ID
+
+  InstanceType:
+    Type: String
+    Description: Instance Type
+    Default: t2.micro
+  MyImageId:
+    Type: AWS::EC2::Image::Id
+    Description: AMI ID
+    Default: ami-0440d3b780d96b29d
+    ConstraintDescription: must be a valid AMI for the region.
+
+Resources:
+
+  MyLaunchTemplate:
+    Type: AWS::EC2::LaunchTemplate
+    Properties:
+      LaunchTemplateName: my-launch-template
+      LaunchTemplateData:
+        ImageId: 
+          - iRef: MyImageId
+        InstanceType: t2.micro
+        KeyName: !Ref KeyName
+        SecurityGroupIds:
+          - !Ref MySecurityGroup
+        SubnetId: !Ref MySubnet1
+        UserData:
+          Fn::Base64: |
+            #!/bin/bash
+            yum update -y
+            yum install -y httpd
+            systemctl start httpd
+            systemctl enable httpd
+            echo "Hello, World! This Apache WebServer was Launched from a Launch Template and ASG!" > /var/www/html/index.html
+        Tags:
+          - Key: Name
+            Value: my-launch-template
+        BlockDeviceMappings:
+          - DeviceName: /dev/xvda
+            Ebs:
+              VolumeSize: 8
+              VolumeType: gp2
+              DeleteOnTermination: true
+              Encrypted: false
+          - DeviceName: /dev/sdb
+            Ebs:
+              VolumeSize: 20
+              VolumeType: gp2
+              DeleteOnTermination: true
+
+  MyLoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: my-alb
+      Scheme: internet-facing
+      Subnets:
+        - !Ref MySubnet2
+      SecurityGroups:
+        - !Ref MySecurityGroup
+      Tags:
+        - Key: Name
+          Value: my-alb
+
+  MyTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: my-target-group
+      Port: 80
+      Protocol: HTTP
+      VpcId: !Ref MyVpcId
+
+  MyListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref MyTargetGroup
+      LoadBalancerArn: !Ref MyLoadBalancer
+      Port: 80
+      Protocol: HTTP
+
+  MyAutoScalingGroup:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      AutoScalingGroupName: my-asg
+      LaunchTemplate:
+        LaunchTemplateId: !Ref MyLaunchTemplate # Assuming you have a LaunchTemplate defined
+        Version: "1"
+      MinSize: 2
+      MaxSize: 5
+      DesiredCapacity: 2
+      AvailabilityZones:
+        - !Select [0, !GetAZs ""]
+        - !Select [1, !GetAZs ""]
+      TargetGroupARNs:
+        - !Ref MyTargetGroup

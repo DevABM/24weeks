@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: This template deploys a VPC, with a set of 3 public  spread across three Availability Zones. It deploys an internet gateway, with a default route on the public subnets. It then launches an EC2 instance into the public subnet, and deploys an Apache web server into it. It also deploys Application Load Balancer an an auto scaling group for the web server.
+Parameters:
+  EnvironmentName:
+    Description: An environment name that is prefixed to resource names
+    Type: String
+  VpcCIDR:
+    Description: Please enter the IP range (CIDR notation) for this VPC
+    Type: String
+    Default: 10.10.0.0/16
+  PublicSubnet1CIDR:
+    Description: Please enter the IP range (CIDR notation) for the public subnet in the first Availability Zone
+    Type: String
+    Default: 10.10.1.0/24
+  PublicSubnet2CIDR:
+    Description: Please enter the IP range (CIDR notation) for the public subnet in the second Availability Zone
+    Type: String
+    Default: 10.10.2.0/24
+  PublicSubnet3CIDR:
+    Description: Please enter the IP range (CIDR notation) for the public subnet in the third Availability Zone
+    Type: String
+    Default: 10.10.3.0/24
+  MyVpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: VPC ID
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: Key Pair Name
+  MySubnet1:
+    Type: AWS::EC2::Subnet::Id
+    Description: Subnet ID
+  MySubnet2:
+    Type: AWS::EC2::Subnet::Id
+    Description: Subnet ID
+  MySubnet3:
+    Type: AWS::EC2::Subnet::Id
+    Description: Subnet ID
+
+  MySecurityGroup:
+    Type: AWS::EC2::SecurityGroup::Id
+    Description: Security Group ID
+
+  InstanceType:
+    Type: String
+    Description: Instance Type
+    Default: t2.micro
+  MyImageId:
+    Type: AWS::EC2::Image::Id
+    Description: AMI ID
+    Default: ami-0440d3b780d96b29d
+    ConstraintDescription: must be a valid AMI for the region.
+
+Resources:
+
+  MyEC2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref MyImageId
+      InstanceType: !Ref InstanceType
+      KeyName: !Ref KeyName
+      SubnetId: !Ref MySubnet1
+      SecurityGroupIds:
+        - !Ref MySecurityGroup
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          yum update -y
+          yum install httpd -y
+          systemctl start httpd
+          systemctl enable httpd
+          echo "<html><h1>Welcome to my web server</h1></html>" > /var/www/html/index.html

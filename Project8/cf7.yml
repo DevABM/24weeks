@@ -1,0 +1,120 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: VPC setup with public subnets and EC2 instance running Apache WebServer with ALB and ASG
+Parameters:
+  KeyName:
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+    Type: AWS::EC2::KeyPair::KeyName
+    ConstraintDescription: Must be the name of an existing EC2 KeyPair.
+  InstanceType:
+    Description: WebServer EC2 instance type
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+      - t2.small
+      - t2.medium
+    ConstraintDescription: Must be a valid EC2 instance type.
+  SSHLocation:
+    Description: The IP address range that can be used to SSH to the EC2 instances
+    Type: String
+    MinLength: 9
+    MaxLength: 18
+    Default: 0.0.0.0/0
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
+    ConstraintDescription: Must be a valid IP CIDR range of the form x.x.x.x/x.
+Resources:
+  MyVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: "10.10.0.0/16"
+      EnableDnsSupport: "true"
+      EnableDnsHostnames: "true"
+      InstanceTenancy: "default"
+      Tags:
+        - Key: Name
+          Value: my-vpc-by-cf
+  MyInternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: my-igw-cf
+  MyVPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref MyVPC
+      InternetGatewayId: !Ref MyInternetGateway
+  MyRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref MyVPC
+      Tags:
+        - Key: Name
+          Value: my-rtb-cf
+  MyRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref MyRouteTable
+  
+  MySubnet01:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyVPC
+      CidrBlock: "10.10.1.0/24"
+      AvailabilityZone: !Select [0, !GetAZs ""]
+
+  MySubnet02:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyVPC
+      CidrBlock: "10.10.2.0/24"
+      AvailabilityZone: !Select [1, !GetAZs ""]
+
+  MySubnet03:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyVPC
+      CidrBlock: "10.10.3.0/24"
+      AvailabilityZone: !Select [2, !GetAZs ""]
+
+  MySecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Security group for the EC2 instance"
+      VpcId: !Ref MyVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+          Description: "Allow HTTP traffic from anywhere"
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+          Description: "Allow SSH traffic from anywhere"
+          
+  MyInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      SecurityGroupIds:
+        - !Ref MySecurityGroup
+      SubnetId: !Ref MySubnet01
+      ImageId: ami-0440d3b780d96b29d
+      Tags:
+        - Key: Name
+          Value: my-ec2-instance
+      KeyName: 
+        - iRef KeyName
+
+
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          yum update -y
+          yum install -y httpd
+          systemctl start httpd
+          systemctl enable httpd
+          echo "Hello, World!" > /var/www/html/index.html
+ 
