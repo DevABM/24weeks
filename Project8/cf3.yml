@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Launch an EC2 instance with Apache in existing VPC"
+Parameters:
+  MyVpcId:
+    Type: "AWS::EC2::VPC::Id"
+    Description: "VPC ID"
+  KeyName:
+    Type: "AWS::EC2::KeyPair::KeyName"
+    Description: "Key Pair Name"
+  InstanceType:
+    Type: "String"
+    Description: "Instance Type"
+    Default: "t2.micro"
+  MyImageId:
+    Type: "AWS::EC2::Image::Id"
+    Description: "AMI ID"
+    Default: "ami-0440d3b780d96b29d"
+  
+  Resources:
+    Myec2:
+      Type: 'AWS::EC2::Instance'
+      Properties:
+        SecurityGroupIds:
+          - !Ref Mysecgroup
+        KeyName: !Ref KeyName
+        ImageId: !Ref MyImageId
+        InstanceType: !Ref InstanceType
+        SubnetId: !Ref mysubnet1
+        Tags:
+          - Key: Name
+            Value: !Ref InstanceType
+    Mysecgroup:
+      Type: 'AWS::EC2::SecurityGroup'
+      Properties:
+        SecurityGroupIds:
+            - !GetAtt "Mysecgroup.GroupId"
+        KeyName: !Ref KeyName
+        ImageId: ami-0922553b7b0369273
+        InstanceType: t2.micro
+        SubnetId: !Ref mysubnet1
+
+ Mysecgroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+        GroupDescription: Enable SSH access via port 22
+        VpcId: !Ref myvpc
+        SecurityGroupIngress:
+            - IpProtocol: tcp
+              FromPort: '22'
+              ToPort: '22'
+              CidrIp: 0.0.0.0/0 
