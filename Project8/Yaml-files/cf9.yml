@@ -1,4 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
+
 Description: This template deploys a VPC, with a set of 3 public  spread across three Availability Zones. It then launches a Launch Template for an Apache web server into the public subnet. It also deploys Application Load Balancer and an auto scaling group for the web server.
 Parameters:
   EnvironmentName:
@@ -53,6 +54,9 @@ Parameters:
     Type: String
     Description: Launch Template Name
     Default: my-launch-template
+  MyTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Description: Target Group ID
   
 
 Resources:

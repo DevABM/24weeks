@@ -1,3 +1,4 @@
+AWSTemplateFormatVersion: "2010-09-09"
 Description: This template deploys a VPC, with a set of 3 public  spread across three Availability Zones. It deploys an internet gateway, with a default route on the public subnets. It then launches an EC2 instance into the public subnet, and deploys an Apache web server into it. It also deploys Application Load Balancer an an auto scaling group for the web server.
 Parameters:
   EnvironmentName:
