@@ -1,0 +1,2 @@
+aws-shell 
+pip3 install aws-shell
