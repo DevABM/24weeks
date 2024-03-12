@@ -1,0 +1,376 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Troubleshooting_Secure_Networks_Lab
+
+Parameters:
+  VpcName:
+    Type: String
+    Default: "prod_vpc"
+  LatestAmiId:
+    Type : "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>"
+    Default: "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
+
+Mappings:
+  VpcCidrBlocks:
+    us-east-1:
+      Default: 10.0.0.0/16
+
+  VpcSubnets:
+    us-east-1:
+      PrivateAz1: 10.0.0.0/24
+      PrivateAz2: 10.0.1.0/24
+      PublicAz1: 10.0.10.0/24
+      PublicAz2: 10.0.11.0/24
+
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !FindInMap [VpcCidrBlocks, !Ref "AWS::Region", Default]
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
+      InstanceTenancy: default
+      Tags:
+      - Key: Name
+        Value: 
+          Ref: VpcName
+
+  PrivateSubnetAz1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '0'
+        - Fn::GetAZs:
+            Ref: AWS::Region
+      CidrBlock: !FindInMap [VpcSubnets, !Ref "AWS::Region", PrivateAz1]
+      MapPublicIpOnLaunch: 'false'
+      Tags:
+      - Key: Name
+        Value: PrivateSubnet-AZ1
+      VpcId: 
+        Ref: VPC
+
+  PrivateSubnetAz2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '1'
+        - Fn::GetAZs:
+            Ref: AWS::Region
+      CidrBlock: !FindInMap [VpcSubnets, !Ref "AWS::Region", PrivateAz2]
+      MapPublicIpOnLaunch: 'false'
+      Tags:
+      - Key: Name
+        Value: PrivateSubnet-AZ2
+      VpcId: 
+        Ref: VPC
+
+  PublicSubnetAz1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '0'
+        - Fn::GetAZs:
+            Ref: AWS::Region
+      CidrBlock: !FindInMap [VpcSubnets, !Ref "AWS::Region", PublicAz1]
+      MapPublicIpOnLaunch: 'true'
+      Tags:
+      - Key: Name
+        Value: PublicSubnet-AZ1
+      VpcId: 
+        Ref: VPC
+
+  PublicSubnetAz2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+        - '1'
+        - Fn::GetAZs:
+            Ref: AWS::Region
+      CidrBlock: !FindInMap [VpcSubnets, !Ref "AWS::Region", PublicAz2]
+      MapPublicIpOnLaunch: 'true'
+      Tags:
+      - Key: Name
+        Value: PublicSubnet-AZ2
+      VpcId: 
+        Ref: VPC
+
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: 
+        Ref: VPC
+      Tags:
+      - Key: Name
+        Value: Public-Route-Table
+
+  PrivateRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: VPC
+      Tags:
+      - Key: Name
+        Value: Private-Route-Table
+
+  PrivateRouteTableAssociationAZ1:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId:
+        Ref: PrivateSubnetAz1
+      RouteTableId:
+        Ref: PrivateRouteTable
+
+  PrivateRouteTableAssociationAZ2:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId:
+        Ref: PrivateSubnetAz2
+      RouteTableId:
+        Ref: PrivateRouteTable
+
+  PublicRouteTableAssociationAZ1:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId:
+        Ref: PublicSubnetAz1
+      RouteTableId:
+        Ref: PublicRouteTable
+
+  PublicRouteTableAssociationAZ2:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId:
+        Ref: PublicSubnetAz2
+      RouteTableId:
+        Ref: PublicRouteTable
+
+  PublicSubnetRoute:
+    Type: AWS::EC2::Route
+    DependsOn: InternetGatewayAttachment
+    Properties:
+      RouteTableId:
+        Ref: PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId:
+        Ref: InternetGateway
+
+  PrivateSubnetRoute:
+    Type: AWS::EC2::Route
+    DependsOn: NATGateway
+    Properties:
+      RouteTableId:
+        Ref: PrivateRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId:
+        Ref: NATGateway
+
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+      - Key: Name
+        Value: prod_igw
+  
+  InternetGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    DependsOn: InternetGateway
+    Properties:
+      InternetGatewayId: 
+        Ref: InternetGateway
+      VpcId: 
+        Ref: VPC
+
+  NatGatewayEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: "VPC"
+
+  NATGateway:
+    DependsOn: NatGatewayEIP
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocationId: !GetAtt NatGatewayEIP.AllocationId
+      SubnetId:
+        Ref: PublicSubnetAz1
+
+  InventoryAppServer01:
+    Type: AWS::EC2::Instance
+    Properties: 
+      ImageId: 
+        Ref: LatestAmiId
+      InstanceType: t3.micro
+      SecurityGroupIds: 
+        - !Ref InventoryAppSecurityGroup
+      SubnetId: 
+        Ref: PublicSubnetAz1
+      Tags:
+      - Key: Name
+        Value: prod-inventory-app-svr
+
+  InventoryAppServer02:
+    Type: AWS::EC2::Instance
+    Properties: 
+      ImageId: 
+        Ref: LatestAmiId
+      InstanceType: t3.micro
+      SecurityGroupIds: 
+        - !Ref InventoryAppDevSecurityGroup
+      SubnetId: 
+        Ref: PublicSubnetAz2
+      Tags:
+      - Key: Name
+        Value: dev-inventory-app-svr
+
+  KafkaAppServer01:
+    Type: AWS::EC2::Instance
+    Properties: 
+      ImageId: 
+        Ref: LatestAmiId
+      InstanceType: t3.micro
+      SecurityGroupIds: 
+        - !Ref KafkaProdSecurityGroup
+      SubnetId: 
+        Ref: PrivateSubnetAz1
+      Tags:
+      - Key: Name
+        Value: prod-kafka-svr-01
+
+  KafkaAppServer02:
+    Type: AWS::EC2::Instance
+    Properties: 
+      ImageId: 
+        Ref: LatestAmiId
+      InstanceType: t3.micro
+      SecurityGroupIds: 
+        - !Ref KafkaProdSecurityGroup
+      SubnetId: 
+        Ref: PrivateSubnetAz2
+      Tags:
+      - Key: Name
+        Value: prod-kafka-svr-02
+
+  KafkaDevServer02:
+    Type: AWS::EC2::Instance
+    Properties: 
+      ImageId: 
+        Ref: LatestAmiId
+      InstanceType: t3.micro
+      SecurityGroupIds: 
+        - !Ref KafkaDevSecurityGroup
+      SubnetId: 
+        Ref: PrivateSubnetAz2
+      Tags:
+      - Key: Name
+        Value: dev-kafka-svr
+
+  InventoryAppSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow Inbound Traffic from Partner
+      VpcId: 
+        Ref: VPC
+      Tags:
+      - Key: Name
+        Value: prod-inventory-app-sg
+
+  InventorySGIngressGroup:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties: 
+      CidrIp: "0.0.0.0/0"
+      Description: Allow Inbound Traffic from Inventory Partner
+      FromPort: 80
+      GroupId: !GetAtt InventoryAppSecurityGroup.GroupId
+      IpProtocol: tcp
+      ToPort: 80
+
+  InventoryAppDevSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow Inbound Traffic from Partner
+      VpcId: !Ref VPC
+      Tags:
+      - Key: Name
+        Value: inventory-app-dev-sg
+
+  InventoryDevSGIngressGroup:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties: 
+      CidrIp: "0.0.0.0/0"
+      Description: Allow Inbound Traffic from Inventory Partner
+      FromPort: 80
+      GroupId: !GetAtt InventoryAppDevSecurityGroup.GroupId
+      IpProtocol: tcp
+      ToPort: 80
+
+  KafkaProdSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow Internal Traffic for Event Processing
+      VpcId: 
+        Ref: VPC
+      Tags:
+      - Key: Name
+        Value: prod-kafka-app-sg
+
+  KafkaProdSGIngressGroup:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties: 
+      CidrIp: "10.0.11.44/32"
+      Description: Allow Internal Traffic for Event Processing
+      FromPort: 9092
+      GroupId: !GetAtt KafkaProdSecurityGroup.GroupId
+      IpProtocol: tcp
+      ToPort: 9092
+
+  KafkaProdSGIngressGroup:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties: 
+      CidrIp: "10.0.11.99/32"
+      Description: Allow Internal Traffic for Event Processing
+      FromPort: 9092
+      GroupId: !GetAtt KafkaProdSecurityGroup.GroupId
+      IpProtocol: tcp
+      ToPort: 9092
+
+  KafkaDevSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow Internal Traffic for Event Processing
+      VpcId: 
+        Ref: VPC
+      Tags:
+      - Key: Name
+        Value: kafka-app-dev-sg
+
+  KafkaDevSGIngressGroup:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties: 
+      CidrIp: "10.0.10.25/32"
+      Description: Allow Internal Traffic for Event Processing
+      FromPort: 9092
+      GroupId: !GetAtt KafkaDevSecurityGroup.GroupId
+      IpProtocol: tcp
+      ToPort: 9092
+
+  KafkaDevSGIngressGroup:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties: 
+      CidrIp: "10.0.10.81/32"
+      Description: Allow Internal Traffic for Event Processing
+      FromPort: 9092
+      GroupId: !GetAtt KafkaDevSecurityGroup.GroupId
+      IpProtocol: tcp
+      ToPort: 9092
+
+  InventoryS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Join [ "-", ["prod-inventory-data", !Ref AWS::AccountId]]
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+
+ 
