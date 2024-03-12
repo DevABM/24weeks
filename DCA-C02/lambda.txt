@@ -1,1 +1,14 @@
 A Lambda authorizer (formerly known as a custom authorizer) is an API Gateway feature that uses a Lambda function to control access to your API. A Lambda authorizer is useful if you want to implement a custom authorization scheme that uses a bearer token authentication strategy such as OAuth or SAML, or that uses request parameters to determine the caller's identity. When a client makes a request to one of your API's methods, API Gateway calls your Lambda authorizer, which takes the caller's identity as input and returns an IAM policy as output.
+
+Applications are taking a long time to process messages from an Amazon SQS queue and there have been incidents of messages being processed multiple times. How can the queue be configured to prevent this from occurring?
+
+The amount of time a message is invisible in the queue after a reader picks it up. Provided the job is processed before the visibility timeout expires, the message will then be deleted from the queue. Increasing the visibility timeout will provide more time for the applications to process and delete the messages.
+
+How can a notification be sent to multiple Amazon SQS queues?
+With this configuration an SNS topic pushes a notification once to multiple SQS queues.
+FIFO queues also support message groups that allow multiple ordered message groups within a single queue. You can configure a MessageDeduplicationId with the message that allows for deduplication.
+In Lambda proxy integration, when a client submits an API request, API Gateway passes to the integrated Lambda function the raw request as-is, except that the order of the request parameters is not preserved.
+An edge-optimized API endpoint is best for geographically distributed clients. API requests are routed to the nearest CloudFront Point of Presence (POP). This is the default endpoint type for API Gateway REST APIs.
+A company has deployed a REST API using Amazon API Gateway. Their customers pay for different tiers of access and the company needs to be able to specify different usage limits for each tier. How can this be achieved?
+
+A usage plan specifies who can access one or more deployed API stages and methods — and also how much and how fast they can access them. You can use a usage plan to configure throttling and quota limits, which are enforced on individual client API keys. The plan uses API keys to identify API clients and meters access to the associated API stages for each key.
