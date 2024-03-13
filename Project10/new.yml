@@ -1,0 +1,16 @@
+ # new yal for 3 tier architecture
+ version: '3'   
+ services
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+    environment:
+      FLASK_ENV: development
+      FLASK_APP: app.py
+      FLASK_DEBUG: 1
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/postgres
+      DATABASE_TEST_URL: postgresql://postgres:postgres@db:5432/postgres
+        
